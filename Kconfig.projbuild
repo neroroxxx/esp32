@@ -429,4 +429,14 @@ config ARDUINO_SELECTIVE_Insights
     depends on ARDUINO_SELECTIVE_COMPILATION
     default y
 
+config ARDUINO_SELECTIVE_FastLED
+    bool "Enable FastLED"
+    depends on ARDUINO_SELECTIVE_COMPILATION
+    default y
+
+config ARDUINO_SELECTIVE_NimBLE
+    bool "Enable NimBLE"
+    depends on ARDUINO_SELECTIVE_COMPILATION
+    default y
+
 endmenu

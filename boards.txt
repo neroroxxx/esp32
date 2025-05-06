@@ -1,5 +1,6 @@
 # Repackaged for use with BMC
 # Official Espressif options
+# USB Mode for S2 and S3 is always iset to USB-OTG
 menu.UploadSpeed=Upload Speed
 menu.USBMode=USB Mode
 menu.CDCOnBoot=USB CDC On Boot
@@ -30,6 +31,559 @@ menu.LORAWAN_PREAMBLE_LENGTH=LoRaWan Preamble Length
 menu.SLOW_CLK_TPYE=Slow Clk Type(only for LoRaWAN)
 menu.einksize=E-Ink Display Size
 menu.NetworkLogLevel=Network Log Level
+
+##############################################################
+
+##############################################################
+
+esp32s2.name=ESP32S2 Dev Module (BMC Beta)
+esp32s2.vid.0=0x303a
+esp32s2.pid.0=0x0002
+esp32s2.upload_port.vid.0=0x303a
+esp32s2.upload_port.pid.0=0x0002
+
+esp32s2.bootloader.tool=esptool_py
+esp32s2.bootloader.tool.default=esptool_py
+
+esp32s2.upload.tool=esptool_py
+esp32s2.upload.tool.default=esptool_py
+esp32s2.upload.tool.network=esp_ota
+
+esp32s2.upload.maximum_size=1310720
+esp32s2.upload.maximum_data_size=327680
+esp32s2.upload.flags=
+esp32s2.upload.extra_flags=
+esp32s2.upload.use_1200bps_touch=true
+esp32s2.upload.wait_for_upload_port=true
+
+esp32s2.serial.disableDTR=false
+esp32s2.serial.disableRTS=false
+
+esp32s2.build.tarch=xtensa
+esp32s2.build.bootloader_addr=0x1000
+esp32s2.build.target=esp32s2
+esp32s2.build.mcu=esp32s2
+esp32s2.build.core=esp32
+esp32s2.build.variant=esp32s2
+esp32s2.build.board=ESP32S2_DEV
+
+esp32s2.build.cdc_on_boot=1
+esp32s2.build.msc_on_boot=0
+esp32s2.build.dfu_on_boot=0
+esp32s2.build.f_cpu=240000000L
+esp32s2.build.flash_size=4MB
+esp32s2.build.flash_freq=80m
+esp32s2.build.flash_mode=dio
+esp32s2.build.boot=qio
+esp32s2.build.partitions=default
+esp32s2.build.defines=
+# esp32s2.build.extra_flags=-DESP32 -include "{build.source.path}/config.h"
+
+## IDE 2.0 Seems to not update the value
+esp32s2.menu.JTAGAdapter.default=Disabled
+esp32s2.menu.JTAGAdapter.default.build.copy_jtag_files=0
+esp32s2.menu.JTAGAdapter.external=FTDI Adapter
+esp32s2.menu.JTAGAdapter.external.build.openocdscript=esp32s2-kaluga-1.cfg
+esp32s2.menu.JTAGAdapter.external.build.copy_jtag_files=1
+esp32s2.menu.JTAGAdapter.bridge=ESP USB Bridge
+esp32s2.menu.JTAGAdapter.bridge.build.openocdscript=esp32s2-bridge.cfg
+esp32s2.menu.JTAGAdapter.bridge.build.copy_jtag_files=1
+
+# esp32s2.menu.CDCOnBoot.default=Disabled
+# esp32s2.menu.CDCOnBoot.default.build.cdc_on_boot=0
+esp32s2.menu.CDCOnBoot.cdc=Enabled
+esp32s2.menu.CDCOnBoot.cdc.build.cdc_on_boot=1
+
+esp32s2.menu.MSCOnBoot.default=Disabled
+esp32s2.menu.MSCOnBoot.default.build.msc_on_boot=0
+# esp32s2.menu.MSCOnBoot.msc=Enabled
+# esp32s2.menu.MSCOnBoot.msc.build.msc_on_boot=1
+
+esp32s2.menu.DFUOnBoot.default=Disabled
+esp32s2.menu.DFUOnBoot.default.build.dfu_on_boot=0
+# esp32s2.menu.DFUOnBoot.dfu=Enabled
+# esp32s2.menu.DFUOnBoot.dfu.build.dfu_on_boot=1
+
+# esp32s2.menu.UploadMode.default=UART0
+# esp32s2.menu.UploadMode.default.upload.use_1200bps_touch=false
+# esp32s2.menu.UploadMode.default.upload.wait_for_upload_port=false
+esp32s2.menu.UploadMode.cdc=USB-OTG (TinyUSB)
+esp32s2.menu.UploadMode.cdc.upload.use_1200bps_touch=true
+esp32s2.menu.UploadMode.cdc.upload.wait_for_upload_port=true
+
+esp32s2.menu.PSRAM.disabled=Disabled
+esp32s2.menu.PSRAM.disabled.build.defines=
+esp32s2.menu.PSRAM.enabled=Enabled
+esp32s2.menu.PSRAM.enabled.build.defines=-DBOARD_HAS_PSRAM
+
+esp32s2.menu.PartitionScheme.default=BMC APP (3MB No OTA/1MB SPIFFS)
+esp32s2.menu.PartitionScheme.default.build.partitions=huge_app
+esp32s2.menu.PartitionScheme.default.upload.maximum_size=3145728
+
+
+esp32s2.menu.CPUFreq.240=240MHz (WiFi)
+esp32s2.menu.CPUFreq.240.build.f_cpu=240000000L
+esp32s2.menu.CPUFreq.160=160MHz (WiFi)
+esp32s2.menu.CPUFreq.160.build.f_cpu=160000000L
+esp32s2.menu.CPUFreq.80=80MHz (WiFi)
+esp32s2.menu.CPUFreq.80.build.f_cpu=80000000L
+esp32s2.menu.CPUFreq.40=40MHz
+esp32s2.menu.CPUFreq.40.build.f_cpu=40000000L
+esp32s2.menu.CPUFreq.20=20MHz
+esp32s2.menu.CPUFreq.20.build.f_cpu=20000000L
+esp32s2.menu.CPUFreq.10=10MHz
+esp32s2.menu.CPUFreq.10.build.f_cpu=10000000L
+
+esp32s2.menu.FlashMode.qio=QIO
+esp32s2.menu.FlashMode.qio.build.flash_mode=dio
+esp32s2.menu.FlashMode.qio.build.boot=qio
+esp32s2.menu.FlashMode.dio=DIO
+esp32s2.menu.FlashMode.dio.build.flash_mode=dio
+esp32s2.menu.FlashMode.dio.build.boot=dio
+
+esp32s2.menu.FlashFreq.80=80MHz
+esp32s2.menu.FlashFreq.80.build.flash_freq=80m
+esp32s2.menu.FlashFreq.40=40MHz
+esp32s2.menu.FlashFreq.40.build.flash_freq=40m
+
+esp32s2.menu.FlashSize.4M=4MB (32Mb)
+esp32s2.menu.FlashSize.4M.build.flash_size=4MB
+esp32s2.menu.FlashSize.8M=8MB (64Mb)
+esp32s2.menu.FlashSize.8M.build.flash_size=8MB
+esp32s2.menu.FlashSize.2M=2MB (16Mb)
+esp32s2.menu.FlashSize.2M.build.flash_size=2MB
+esp32s2.menu.FlashSize.16M=16MB (128Mb)
+esp32s2.menu.FlashSize.16M.build.flash_size=16MB
+
+esp32s2.menu.UploadSpeed.921600=921600
+esp32s2.menu.UploadSpeed.921600.upload.speed=921600
+esp32s2.menu.UploadSpeed.115200=115200
+esp32s2.menu.UploadSpeed.115200.upload.speed=115200
+esp32s2.menu.UploadSpeed.256000.windows=256000
+esp32s2.menu.UploadSpeed.256000.upload.speed=256000
+esp32s2.menu.UploadSpeed.230400.windows.upload.speed=256000
+esp32s2.menu.UploadSpeed.230400=230400
+esp32s2.menu.UploadSpeed.230400.upload.speed=230400
+esp32s2.menu.UploadSpeed.460800.linux=460800
+esp32s2.menu.UploadSpeed.460800.macosx=460800
+esp32s2.menu.UploadSpeed.460800.upload.speed=460800
+esp32s2.menu.UploadSpeed.512000.windows=512000
+esp32s2.menu.UploadSpeed.512000.upload.speed=512000
+
+esp32s2.menu.DebugLevel.none=None
+esp32s2.menu.DebugLevel.none.build.code_debug=0
+esp32s2.menu.DebugLevel.error=Error
+esp32s2.menu.DebugLevel.error.build.code_debug=1
+esp32s2.menu.DebugLevel.warn=Warn
+esp32s2.menu.DebugLevel.warn.build.code_debug=2
+esp32s2.menu.DebugLevel.info=Info
+esp32s2.menu.DebugLevel.info.build.code_debug=3
+esp32s2.menu.DebugLevel.debug=Debug
+esp32s2.menu.DebugLevel.debug.build.code_debug=4
+esp32s2.menu.DebugLevel.verbose=Verbose
+esp32s2.menu.DebugLevel.verbose.build.code_debug=5
+
+esp32s2.menu.EraseFlash.none=Disabled
+esp32s2.menu.EraseFlash.none.upload.erase_cmd=
+esp32s2.menu.EraseFlash.all=Enabled
+esp32s2.menu.EraseFlash.all.upload.erase_cmd=-e
+
+esp32s2.menu.ZigbeeMode.default=Disabled
+esp32s2.menu.ZigbeeMode.default.build.zigbee_mode=
+esp32s2.menu.ZigbeeMode.default.build.zigbee_libs=
+esp32s2.menu.ZigbeeMode.zczr=Zigbee ZCZR (coordinator/router)
+esp32s2.menu.ZigbeeMode.zczr.build.zigbee_mode=-DZIGBEE_MODE_ZCZR
+esp32s2.menu.ZigbeeMode.zczr.build.zigbee_libs=-lesp_zb_api_zczr -lesp_zb_cli_command -lzboss_stack.zczr -lzboss_port
+
+##############################################################
+
+esp32s3.name=ESP32S3 Dev Module (BMC Beta)
+
+esp32s3.bootloader.tool=esptool_py
+esp32s3.bootloader.tool.default=esptool_py
+
+esp32s3.upload.tool=esptool_py
+esp32s3.upload.tool.default=esptool_py
+esp32s3.upload.tool.network=esp_ota
+
+esp32s3.upload.maximum_size=1310720
+esp32s3.upload.maximum_data_size=327680
+esp32s3.upload.flags=
+esp32s3.upload.extra_flags=
+esp32s3.upload.use_1200bps_touch=true
+esp32s3.upload.wait_for_upload_port=true
+
+esp32s3.serial.disableDTR=false
+esp32s3.serial.disableRTS=false
+
+esp32s3.build.tarch=xtensa
+esp32s3.build.bootloader_addr=0x0
+esp32s3.build.target=esp32s3
+esp32s3.build.mcu=esp32s3
+esp32s3.build.core=esp32
+esp32s3.build.variant=esp32s3
+esp32s3.build.board=ESP32S3_DEV
+
+esp32s3.build.usb_mode=0
+esp32s3.build.cdc_on_boot=1
+esp32s3.build.msc_on_boot=0
+esp32s3.build.dfu_on_boot=0
+
+esp32s3.build.f_cpu=240000000L
+esp32s3.build.flash_size=4MB
+esp32s3.build.flash_freq=80m
+esp32s3.build.flash_mode=dio
+esp32s3.build.boot=qio
+esp32s3.build.boot_freq=80m
+esp32s3.build.partitions=default
+esp32s3.build.defines=
+# esp32s3.build.extra_flags=-DESP32 -include "{build.source.path}/config.h"
+esp32s3.build.loop_core=
+esp32s3.build.event_core=
+esp32s3.build.psram_type=qspi
+esp32s3.build.memory_type={build.boot}_{build.psram_type}
+
+## IDE 2.0 Seems to not update the value
+esp32s3.menu.JTAGAdapter.default=Disabled
+esp32s3.menu.JTAGAdapter.default.build.copy_jtag_files=0
+esp32s3.menu.JTAGAdapter.builtin=Integrated USB JTAG
+esp32s3.menu.JTAGAdapter.builtin.build.openocdscript=esp32s3-builtin.cfg
+esp32s3.menu.JTAGAdapter.builtin.build.copy_jtag_files=1
+esp32s3.menu.JTAGAdapter.external=FTDI Adapter
+esp32s3.menu.JTAGAdapter.external.build.openocdscript=esp32s3-ftdi.cfg
+esp32s3.menu.JTAGAdapter.external.build.copy_jtag_files=1
+esp32s3.menu.JTAGAdapter.bridge=ESP USB Bridge
+esp32s3.menu.JTAGAdapter.bridge.build.openocdscript=esp32s3-bridge.cfg
+esp32s3.menu.JTAGAdapter.bridge.build.copy_jtag_files=1
+
+esp32s3.menu.PSRAM.disabled=Disabled
+esp32s3.menu.PSRAM.disabled.build.defines=
+esp32s3.menu.PSRAM.disabled.build.psram_type=qspi
+esp32s3.menu.PSRAM.enabled=QSPI PSRAM
+esp32s3.menu.PSRAM.enabled.build.defines=-DBOARD_HAS_PSRAM
+esp32s3.menu.PSRAM.enabled.build.psram_type=qspi
+esp32s3.menu.PSRAM.opi=OPI PSRAM
+esp32s3.menu.PSRAM.opi.build.defines=-DBOARD_HAS_PSRAM
+esp32s3.menu.PSRAM.opi.build.psram_type=opi
+
+esp32s3.menu.FlashMode.qio=QIO 80MHz
+esp32s3.menu.FlashMode.qio.build.flash_mode=dio
+esp32s3.menu.FlashMode.qio.build.boot=qio
+esp32s3.menu.FlashMode.qio.build.boot_freq=80m
+esp32s3.menu.FlashMode.qio.build.flash_freq=80m
+esp32s3.menu.FlashMode.qio120=QIO 120MHz
+esp32s3.menu.FlashMode.qio120.build.flash_mode=dio
+esp32s3.menu.FlashMode.qio120.build.boot=qio
+esp32s3.menu.FlashMode.qio120.build.boot_freq=120m
+esp32s3.menu.FlashMode.qio120.build.flash_freq=80m
+esp32s3.menu.FlashMode.dio=DIO 80MHz
+esp32s3.menu.FlashMode.dio.build.flash_mode=dio
+esp32s3.menu.FlashMode.dio.build.boot=dio
+esp32s3.menu.FlashMode.dio.build.boot_freq=80m
+esp32s3.menu.FlashMode.dio.build.flash_freq=80m
+esp32s3.menu.FlashMode.opi=OPI 80MHz
+esp32s3.menu.FlashMode.opi.build.flash_mode=dout
+esp32s3.menu.FlashMode.opi.build.boot=opi
+esp32s3.menu.FlashMode.opi.build.boot_freq=80m
+esp32s3.menu.FlashMode.opi.build.flash_freq=80m
+
+esp32s3.menu.FlashSize.4M=4MB (32Mb)
+esp32s3.menu.FlashSize.4M.build.flash_size=4MB
+esp32s3.menu.FlashSize.8M=8MB (64Mb)
+esp32s3.menu.FlashSize.8M.build.flash_size=8MB
+esp32s3.menu.FlashSize.16M=16MB (128Mb)
+esp32s3.menu.FlashSize.16M.build.flash_size=16MB
+esp32s3.menu.FlashSize.32M=32MB (256Mb)
+esp32s3.menu.FlashSize.32M.build.flash_size=32MB
+
+esp32s3.menu.LoopCore.1=Core 1
+esp32s3.menu.LoopCore.1.build.loop_core=-DARDUINO_RUNNING_CORE=1
+esp32s3.menu.LoopCore.0=Core 0
+esp32s3.menu.LoopCore.0.build.loop_core=-DARDUINO_RUNNING_CORE=0
+
+esp32s3.menu.EventsCore.1=Core 1
+esp32s3.menu.EventsCore.1.build.event_core=-DARDUINO_EVENT_RUNNING_CORE=1
+esp32s3.menu.EventsCore.0=Core 0
+esp32s3.menu.EventsCore.0.build.event_core=-DARDUINO_EVENT_RUNNING_CORE=0
+
+# esp32s3.menu.USBMode.hwcdc=Hardware CDC and JTAG
+# esp32s3.menu.USBMode.hwcdc.build.usb_mode=1
+esp32s3.menu.USBMode.default=USB-OTG (TinyUSB)
+esp32s3.menu.USBMode.default.build.usb_mode=0
+
+# esp32s3.menu.CDCOnBoot.default=Disabled
+# esp32s3.menu.CDCOnBoot.default.build.cdc_on_boot=0
+esp32s3.menu.CDCOnBoot.cdc=Enabled
+esp32s3.menu.CDCOnBoot.cdc.build.cdc_on_boot=1
+
+esp32s3.menu.MSCOnBoot.default=Disabled
+esp32s3.menu.MSCOnBoot.default.build.msc_on_boot=0
+# esp32s3.menu.MSCOnBoot.msc=Enabled (Requires USB-OTG Mode)
+# esp32s3.menu.MSCOnBoot.msc.build.msc_on_boot=1
+
+esp32s3.menu.DFUOnBoot.default=Disabled
+esp32s3.menu.DFUOnBoot.default.build.dfu_on_boot=0
+# esp32s3.menu.DFUOnBoot.dfu=Enabled (Requires USB-OTG Mode)
+# esp32s3.menu.DFUOnBoot.dfu.build.dfu_on_boot=1
+
+# esp32s3.menu.UploadMode.default=UART0 / Hardware CDC
+# esp32s3.menu.UploadMode.default.upload.use_1200bps_touch=false
+# esp32s3.menu.UploadMode.default.upload.wait_for_upload_port=false
+esp32s3.menu.UploadMode.cdc=USB-OTG CDC (TinyUSB)
+esp32s3.menu.UploadMode.cdc.upload.use_1200bps_touch=true
+esp32s3.menu.UploadMode.cdc.upload.wait_for_upload_port=true
+
+esp32s3.menu.PartitionScheme.huge_app=BMC APP (3MB No OTA/1MB SPIFFS)
+esp32s3.menu.PartitionScheme.huge_app.build.partitions=huge_app
+esp32s3.menu.PartitionScheme.huge_app.upload.maximum_size=3145728
+
+esp32s3.menu.CPUFreq.240=240MHz (WiFi)
+esp32s3.menu.CPUFreq.240.build.f_cpu=240000000L
+esp32s3.menu.CPUFreq.160=160MHz (WiFi)
+esp32s3.menu.CPUFreq.160.build.f_cpu=160000000L
+esp32s3.menu.CPUFreq.80=80MHz (WiFi)
+esp32s3.menu.CPUFreq.80.build.f_cpu=80000000L
+esp32s3.menu.CPUFreq.40=40MHz
+esp32s3.menu.CPUFreq.40.build.f_cpu=40000000L
+esp32s3.menu.CPUFreq.20=20MHz
+esp32s3.menu.CPUFreq.20.build.f_cpu=20000000L
+esp32s3.menu.CPUFreq.10=10MHz
+esp32s3.menu.CPUFreq.10.build.f_cpu=10000000L
+
+esp32s3.menu.UploadSpeed.921600=921600
+esp32s3.menu.UploadSpeed.921600.upload.speed=921600
+esp32s3.menu.UploadSpeed.115200=115200
+esp32s3.menu.UploadSpeed.115200.upload.speed=115200
+esp32s3.menu.UploadSpeed.256000.windows=256000
+esp32s3.menu.UploadSpeed.256000.upload.speed=256000
+esp32s3.menu.UploadSpeed.230400.windows.upload.speed=256000
+esp32s3.menu.UploadSpeed.230400=230400
+esp32s3.menu.UploadSpeed.230400.upload.speed=230400
+esp32s3.menu.UploadSpeed.460800.linux=460800
+esp32s3.menu.UploadSpeed.460800.macosx=460800
+esp32s3.menu.UploadSpeed.460800.upload.speed=460800
+esp32s3.menu.UploadSpeed.512000.windows=512000
+esp32s3.menu.UploadSpeed.512000.upload.speed=512000
+
+esp32s3.menu.DebugLevel.none=None
+esp32s3.menu.DebugLevel.none.build.code_debug=0
+esp32s3.menu.DebugLevel.error=Error
+esp32s3.menu.DebugLevel.error.build.code_debug=1
+esp32s3.menu.DebugLevel.warn=Warn
+esp32s3.menu.DebugLevel.warn.build.code_debug=2
+esp32s3.menu.DebugLevel.info=Info
+esp32s3.menu.DebugLevel.info.build.code_debug=3
+esp32s3.menu.DebugLevel.debug=Debug
+esp32s3.menu.DebugLevel.debug.build.code_debug=4
+esp32s3.menu.DebugLevel.verbose=Verbose
+esp32s3.menu.DebugLevel.verbose.build.code_debug=5
+
+esp32s3.menu.EraseFlash.none=Disabled
+esp32s3.menu.EraseFlash.none.upload.erase_cmd=
+esp32s3.menu.EraseFlash.all=Enabled
+esp32s3.menu.EraseFlash.all.upload.erase_cmd=-e
+
+esp32s3.menu.ZigbeeMode.default=Disabled
+esp32s3.menu.ZigbeeMode.default.build.zigbee_mode=
+esp32s3.menu.ZigbeeMode.default.build.zigbee_libs=
+esp32s3.menu.ZigbeeMode.zczr=Zigbee ZCZR (coordinator/router)
+esp32s3.menu.ZigbeeMode.zczr.build.zigbee_mode=-DZIGBEE_MODE_ZCZR
+esp32s3.menu.ZigbeeMode.zczr.build.zigbee_libs=-lesp_zb_api_zczr -lesp_zb_cli_command -lzboss_stack.zczr -lzboss_port
+
+##############################################################
+
+bmc_sens3.name=BMC SENS3 (ESP32-S3)
+
+bmc_sens3.bootloader.tool=esptool_py
+bmc_sens3.bootloader.tool.default=esptool_py
+
+bmc_sens3.upload.tool=esptool_py
+bmc_sens3.upload.tool.default=esptool_py
+bmc_sens3.upload.tool.network=esp_ota
+
+bmc_sens3.upload.maximum_size=1310720
+bmc_sens3.upload.maximum_data_size=327680
+bmc_sens3.upload.flags=
+bmc_sens3.upload.extra_flags=
+bmc_sens3.upload.use_1200bps_touch=true
+bmc_sens3.upload.wait_for_upload_port=true
+
+bmc_sens3.serial.disableDTR=false
+bmc_sens3.serial.disableRTS=false
+
+bmc_sens3.build.tarch=xtensa
+bmc_sens3.build.bootloader_addr=0x0
+bmc_sens3.build.target=esp32s3
+bmc_sens3.build.mcu=esp32s3
+bmc_sens3.build.core=esp32
+bmc_sens3.build.variant=esp32s3
+bmc_sens3.build.board=BMC_SENS3
+
+bmc_sens3.build.usb_mode=0
+bmc_sens3.build.cdc_on_boot=1
+bmc_sens3.build.msc_on_boot=0
+bmc_sens3.build.dfu_on_boot=0
+
+bmc_sens3.build.f_cpu=240000000L
+bmc_sens3.build.flash_size=4MB
+bmc_sens3.build.flash_freq=80m
+bmc_sens3.build.flash_mode=dio
+bmc_sens3.build.boot=qio
+bmc_sens3.build.boot_freq=80m
+bmc_sens3.build.partitions=default
+bmc_sens3.build.defines=
+# bmc_sens3.build.extra_flags=-DESP32 -include "{build.source.path}/config.h"
+bmc_sens3.build.loop_core=
+bmc_sens3.build.event_core=
+bmc_sens3.build.psram_type=qspi
+bmc_sens3.build.memory_type={build.boot}_{build.psram_type}
+
+## IDE 2.0 Seems to not update the value
+bmc_sens3.menu.JTAGAdapter.default=Disabled
+bmc_sens3.menu.JTAGAdapter.default.build.copy_jtag_files=0
+bmc_sens3.menu.JTAGAdapter.builtin=Integrated USB JTAG
+bmc_sens3.menu.JTAGAdapter.builtin.build.openocdscript=esp32s3-builtin.cfg
+bmc_sens3.menu.JTAGAdapter.builtin.build.copy_jtag_files=1
+bmc_sens3.menu.JTAGAdapter.external=FTDI Adapter
+bmc_sens3.menu.JTAGAdapter.external.build.openocdscript=esp32s3-ftdi.cfg
+bmc_sens3.menu.JTAGAdapter.external.build.copy_jtag_files=1
+bmc_sens3.menu.JTAGAdapter.bridge=ESP USB Bridge
+bmc_sens3.menu.JTAGAdapter.bridge.build.openocdscript=esp32s3-bridge.cfg
+bmc_sens3.menu.JTAGAdapter.bridge.build.copy_jtag_files=1
+
+bmc_sens3.menu.PSRAM.disabled=Disabled
+bmc_sens3.menu.PSRAM.disabled.build.defines=
+bmc_sens3.menu.PSRAM.disabled.build.psram_type=qspi
+bmc_sens3.menu.PSRAM.enabled=QSPI PSRAM
+bmc_sens3.menu.PSRAM.enabled.build.defines=-DBOARD_HAS_PSRAM
+bmc_sens3.menu.PSRAM.enabled.build.psram_type=qspi
+bmc_sens3.menu.PSRAM.opi=OPI PSRAM
+bmc_sens3.menu.PSRAM.opi.build.defines=-DBOARD_HAS_PSRAM
+bmc_sens3.menu.PSRAM.opi.build.psram_type=opi
+
+bmc_sens3.menu.FlashMode.qio=QIO 80MHz
+bmc_sens3.menu.FlashMode.qio.build.flash_mode=dio
+bmc_sens3.menu.FlashMode.qio.build.boot=qio
+bmc_sens3.menu.FlashMode.qio.build.boot_freq=80m
+bmc_sens3.menu.FlashMode.qio.build.flash_freq=80m
+bmc_sens3.menu.FlashMode.qio120=QIO 120MHz
+bmc_sens3.menu.FlashMode.qio120.build.flash_mode=dio
+bmc_sens3.menu.FlashMode.qio120.build.boot=qio
+bmc_sens3.menu.FlashMode.qio120.build.boot_freq=120m
+bmc_sens3.menu.FlashMode.qio120.build.flash_freq=80m
+bmc_sens3.menu.FlashMode.dio=DIO 80MHz
+bmc_sens3.menu.FlashMode.dio.build.flash_mode=dio
+bmc_sens3.menu.FlashMode.dio.build.boot=dio
+bmc_sens3.menu.FlashMode.dio.build.boot_freq=80m
+bmc_sens3.menu.FlashMode.dio.build.flash_freq=80m
+bmc_sens3.menu.FlashMode.opi=OPI 80MHz
+bmc_sens3.menu.FlashMode.opi.build.flash_mode=dout
+bmc_sens3.menu.FlashMode.opi.build.boot=opi
+bmc_sens3.menu.FlashMode.opi.build.boot_freq=80m
+bmc_sens3.menu.FlashMode.opi.build.flash_freq=80m
+
+bmc_sens3.menu.FlashSize.4M=4MB (32Mb)
+bmc_sens3.menu.FlashSize.4M.build.flash_size=4MB
+bmc_sens3.menu.FlashSize.8M=8MB (64Mb)
+bmc_sens3.menu.FlashSize.8M.build.flash_size=8MB
+bmc_sens3.menu.FlashSize.16M=16MB (128Mb)
+bmc_sens3.menu.FlashSize.16M.build.flash_size=16MB
+bmc_sens3.menu.FlashSize.32M=32MB (256Mb)
+bmc_sens3.menu.FlashSize.32M.build.flash_size=32MB
+
+bmc_sens3.menu.LoopCore.1=Core 1
+bmc_sens3.menu.LoopCore.1.build.loop_core=-DARDUINO_RUNNING_CORE=1
+bmc_sens3.menu.LoopCore.0=Core 0
+bmc_sens3.menu.LoopCore.0.build.loop_core=-DARDUINO_RUNNING_CORE=0
+
+bmc_sens3.menu.EventsCore.1=Core 1
+bmc_sens3.menu.EventsCore.1.build.event_core=-DARDUINO_EVENT_RUNNING_CORE=1
+bmc_sens3.menu.EventsCore.0=Core 0
+bmc_sens3.menu.EventsCore.0.build.event_core=-DARDUINO_EVENT_RUNNING_CORE=0
+
+# bmc_sens3.menu.USBMode.hwcdc=Hardware CDC and JTAG
+# bmc_sens3.menu.USBMode.hwcdc.build.usb_mode=1
+bmc_sens3.menu.USBMode.default=USB-OTG (TinyUSB)
+bmc_sens3.menu.USBMode.default.build.usb_mode=0
+
+# bmc_sens3.menu.CDCOnBoot.default=Disabled
+# bmc_sens3.menu.CDCOnBoot.default.build.cdc_on_boot=0
+bmc_sens3.menu.CDCOnBoot.cdc=Enabled
+bmc_sens3.menu.CDCOnBoot.cdc.build.cdc_on_boot=1
+
+bmc_sens3.menu.MSCOnBoot.default=Disabled
+bmc_sens3.menu.MSCOnBoot.default.build.msc_on_boot=0
+# bmc_sens3.menu.MSCOnBoot.msc=Enabled (Requires USB-OTG Mode)
+# bmc_sens3.menu.MSCOnBoot.msc.build.msc_on_boot=1
+
+bmc_sens3.menu.DFUOnBoot.default=Disabled
+bmc_sens3.menu.DFUOnBoot.default.build.dfu_on_boot=0
+# bmc_sens3.menu.DFUOnBoot.dfu=Enabled (Requires USB-OTG Mode)
+# bmc_sens3.menu.DFUOnBoot.dfu.build.dfu_on_boot=1
+
+# bmc_sens3.menu.UploadMode.default=UART0 / Hardware CDC
+# bmc_sens3.menu.UploadMode.default.upload.use_1200bps_touch=false
+# bmc_sens3.menu.UploadMode.default.upload.wait_for_upload_port=false
+bmc_sens3.menu.UploadMode.cdc=USB-OTG CDC (TinyUSB)
+bmc_sens3.menu.UploadMode.cdc.upload.use_1200bps_touch=true
+bmc_sens3.menu.UploadMode.cdc.upload.wait_for_upload_port=true
+
+bmc_sens3.menu.PartitionScheme.huge_app=BMC APP (3MB No OTA/1MB SPIFFS)
+bmc_sens3.menu.PartitionScheme.huge_app.build.partitions=huge_app
+bmc_sens3.menu.PartitionScheme.huge_app.upload.maximum_size=3145728
+
+bmc_sens3.menu.CPUFreq.240=240MHz (WiFi)
+bmc_sens3.menu.CPUFreq.240.build.f_cpu=240000000L
+bmc_sens3.menu.CPUFreq.160=160MHz (WiFi)
+bmc_sens3.menu.CPUFreq.160.build.f_cpu=160000000L
+bmc_sens3.menu.CPUFreq.80=80MHz (WiFi)
+bmc_sens3.menu.CPUFreq.80.build.f_cpu=80000000L
+bmc_sens3.menu.CPUFreq.40=40MHz
+bmc_sens3.menu.CPUFreq.40.build.f_cpu=40000000L
+bmc_sens3.menu.CPUFreq.20=20MHz
+bmc_sens3.menu.CPUFreq.20.build.f_cpu=20000000L
+bmc_sens3.menu.CPUFreq.10=10MHz
+bmc_sens3.menu.CPUFreq.10.build.f_cpu=10000000L
+
+bmc_sens3.menu.UploadSpeed.921600=921600
+bmc_sens3.menu.UploadSpeed.921600.upload.speed=921600
+bmc_sens3.menu.UploadSpeed.115200=115200
+bmc_sens3.menu.UploadSpeed.115200.upload.speed=115200
+bmc_sens3.menu.UploadSpeed.256000.windows=256000
+bmc_sens3.menu.UploadSpeed.256000.upload.speed=256000
+bmc_sens3.menu.UploadSpeed.230400.windows.upload.speed=256000
+bmc_sens3.menu.UploadSpeed.230400=230400
+bmc_sens3.menu.UploadSpeed.230400.upload.speed=230400
+bmc_sens3.menu.UploadSpeed.460800.linux=460800
+bmc_sens3.menu.UploadSpeed.460800.macosx=460800
+bmc_sens3.menu.UploadSpeed.460800.upload.speed=460800
+bmc_sens3.menu.UploadSpeed.512000.windows=512000
+bmc_sens3.menu.UploadSpeed.512000.upload.speed=512000
+
+bmc_sens3.menu.DebugLevel.none=None
+bmc_sens3.menu.DebugLevel.none.build.code_debug=0
+bmc_sens3.menu.DebugLevel.error=Error
+bmc_sens3.menu.DebugLevel.error.build.code_debug=1
+bmc_sens3.menu.DebugLevel.warn=Warn
+bmc_sens3.menu.DebugLevel.warn.build.code_debug=2
+bmc_sens3.menu.DebugLevel.info=Info
+bmc_sens3.menu.DebugLevel.info.build.code_debug=3
+bmc_sens3.menu.DebugLevel.debug=Debug
+bmc_sens3.menu.DebugLevel.debug.build.code_debug=4
+bmc_sens3.menu.DebugLevel.verbose=Verbose
+bmc_sens3.menu.DebugLevel.verbose.build.code_debug=5
+
+bmc_sens3.menu.EraseFlash.none=Disabled
+bmc_sens3.menu.EraseFlash.none.upload.erase_cmd=
+bmc_sens3.menu.EraseFlash.all=Enabled
+bmc_sens3.menu.EraseFlash.all.upload.erase_cmd=-e
+
+bmc_sens3.menu.ZigbeeMode.default=Disabled
+bmc_sens3.menu.ZigbeeMode.default.build.zigbee_mode=
+bmc_sens3.menu.ZigbeeMode.default.build.zigbee_libs=
+bmc_sens3.menu.ZigbeeMode.zczr=Zigbee ZCZR (coordinator/router)
+bmc_sens3.menu.ZigbeeMode.zczr.build.zigbee_mode=-DZIGBEE_MODE_ZCZR
+bmc_sens3.menu.ZigbeeMode.zczr.build.zigbee_libs=-lesp_zb_api_zczr -lesp_zb_cli_command -lzboss_stack.zczr -lzboss_port
 
 ##############################################################
 
@@ -64,7 +618,7 @@ esp32doit-devkit-v1.build.flash_size=4MB
 esp32doit-devkit-v1.build.boot=dio
 esp32doit-devkit-v1.build.partitions=default
 esp32doit-devkit-v1.build.defines=
-esp32doit-devkit-v1.build.extra_flags=-DESP32 -include "{build.source.path}/config.h"
+# esp32doit-devkit-v1.build.extra_flags=-DESP32 -include "{build.source.path}/config.h"
 
 esp32doit-devkit-v1.menu.FlashFreq.80=80MHz
 esp32doit-devkit-v1.menu.FlashFreq.80.build.flash_freq=80m
@@ -138,45 +692,16 @@ esp32micromod.build.flash_mode=dio
 esp32micromod.build.boot=dio
 esp32micromod.build.partitions=default
 esp32micromod.build.defines=
+# esp32micromod.build.extra_flags=-DESP32 -include "{build.source.path}/config.h"
 
 esp32micromod.menu.PSRAM.disabled=Disabled
 esp32micromod.menu.PSRAM.disabled.build.defines=
 esp32micromod.menu.PSRAM.enabled=Enabled
 esp32micromod.menu.PSRAM.enabled.build.defines=-DBOARD_HAS_PSRAM -mfix-esp32-psram-cache-issue
 
-esp32micromod.menu.PartitionScheme.default=Default 4MB with spiffs (1.2MB APP/1.5MB SPIFFS)
-esp32micromod.menu.PartitionScheme.default.build.partitions=default
-esp32micromod.menu.PartitionScheme.defaultffat=Default 4MB with ffat (1.2MB APP/1.5MB FATFS)
-esp32micromod.menu.PartitionScheme.defaultffat.build.partitions=default_ffat
-esp32micromod.menu.PartitionScheme.default_8MB=8M with spiffs (3MB APP/1.5MB SPIFFS)
-esp32micromod.menu.PartitionScheme.default_8MB.build.partitions=default_8MB
-esp32micromod.menu.PartitionScheme.default_8MB.upload.maximum_size=3342336
-esp32micromod.menu.PartitionScheme.minimal=Minimal (1.3MB APP/700KB SPIFFS)
-esp32micromod.menu.PartitionScheme.minimal.build.partitions=minimal
-esp32micromod.menu.PartitionScheme.no_ota=No OTA (2MB APP/2MB SPIFFS)
-esp32micromod.menu.PartitionScheme.no_ota.build.partitions=no_ota
-esp32micromod.menu.PartitionScheme.no_ota.upload.maximum_size=2097152
-esp32micromod.menu.PartitionScheme.noota_3g=No OTA (1MB APP/3MB SPIFFS)
-esp32micromod.menu.PartitionScheme.noota_3g.build.partitions=noota_3g
-esp32micromod.menu.PartitionScheme.noota_3g.upload.maximum_size=1048576
-esp32micromod.menu.PartitionScheme.noota_ffat=No OTA (2MB APP/2MB FATFS)
-esp32micromod.menu.PartitionScheme.noota_ffat.build.partitions=noota_ffat
-esp32micromod.menu.PartitionScheme.noota_ffat.upload.maximum_size=2097152
-esp32micromod.menu.PartitionScheme.noota_3gffat=No OTA (1MB APP/3MB FATFS)
-esp32micromod.menu.PartitionScheme.noota_3gffat.build.partitions=noota_3gffat
-esp32micromod.menu.PartitionScheme.noota_3gffat.upload.maximum_size=1048576
-esp32micromod.menu.PartitionScheme.huge_app=Huge APP (3MB No OTA/1MB SPIFFS)
-esp32micromod.menu.PartitionScheme.huge_app.build.partitions=huge_app
-esp32micromod.menu.PartitionScheme.huge_app.upload.maximum_size=3145728
-esp32micromod.menu.PartitionScheme.min_spiffs=Minimal SPIFFS (1.9MB APP with OTA/190KB SPIFFS)
-esp32micromod.menu.PartitionScheme.min_spiffs.build.partitions=min_spiffs
-esp32micromod.menu.PartitionScheme.min_spiffs.upload.maximum_size=1966080
-esp32micromod.menu.PartitionScheme.fatflash=16M Flash (2MB APP/12.5MB FATFS)
-esp32micromod.menu.PartitionScheme.fatflash.build.partitions=ffat
-esp32micromod.menu.PartitionScheme.fatflash.upload.maximum_size=2097152
-esp32micromod.menu.PartitionScheme.app3M_fat9M_16MB=16M Flash (3MB APP/9.9MB FATFS)
-esp32micromod.menu.PartitionScheme.app3M_fat9M_16MB.build.partitions=app3M_fat9M_16MB
-esp32micromod.menu.PartitionScheme.app3M_fat9M_16MB.upload.maximum_size=3145728
+esp32micromod.menu.PartitionScheme.default=BMC APP (3MB No OTA/1MB SPIFFS)
+esp32micromod.menu.PartitionScheme.default.build.partitions=huge_app
+esp32micromod.menu.PartitionScheme.default.upload.maximum_size=3145728
 
 esp32micromod.menu.CPUFreq.240=240MHz (WiFi/BT)
 esp32micromod.menu.CPUFreq.240.build.f_cpu=240000000L
@@ -250,3 +775,241 @@ esp32micromod.menu.EraseFlash.all=Enabled
 esp32micromod.menu.EraseFlash.all.upload.erase_cmd=-e
 
 ##############################################################
+
+lolin_s2_mini.name=LOLIN S2 Mini (BMC Beta)
+lolin_s2_mini.vid.0=0x303a
+lolin_s2_mini.pid.0=0x80C2
+
+lolin_s2_mini.bootloader.tool=esptool_py
+lolin_s2_mini.bootloader.tool.default=esptool_py
+
+lolin_s2_mini.upload.tool=esptool_py
+lolin_s2_mini.upload.tool.default=esptool_py
+lolin_s2_mini.upload.tool.network=esp_ota
+lolin_s2_mini.upload.maximum_size=1310720
+lolin_s2_mini.upload.maximum_data_size=327680
+lolin_s2_mini.upload.flags=
+lolin_s2_mini.upload.extra_flags=
+lolin_s2_mini.upload.use_1200bps_touch=true
+lolin_s2_mini.upload.wait_for_upload_port=true
+lolin_s2_mini.upload.speed=921600
+
+lolin_s2_mini.serial.disableDTR=false
+lolin_s2_mini.serial.disableRTS=false
+
+lolin_s2_mini.build.tarch=xtensa
+lolin_s2_mini.build.bootloader_addr=0x1000
+lolin_s2_mini.build.target=esp32s2
+lolin_s2_mini.build.mcu=esp32s2
+lolin_s2_mini.build.core=esp32
+lolin_s2_mini.build.variant=lolin_s2_mini
+lolin_s2_mini.build.board=LOLIN_S2_MINI
+lolin_s2_mini.build.cdc_on_boot=1
+lolin_s2_mini.build.msc_on_boot=0
+lolin_s2_mini.build.dfu_on_boot=0
+lolin_s2_mini.build.f_cpu=240000000L
+lolin_s2_mini.build.flash_size=4MB
+lolin_s2_mini.build.flash_freq=80m
+lolin_s2_mini.build.flash_mode=dio
+lolin_s2_mini.build.boot=qio
+lolin_s2_mini.build.partitions=default
+lolin_s2_mini.build.defines=
+# lolin_s2_mini.build.extra_flags=-DESP32 -include "{build.source.path}/config.h"
+lolin_s2_mini.build.defines=-DBOARD_HAS_PSRAM
+
+lolin_s2_mini.menu.CDCOnBoot.default=Enabled
+lolin_s2_mini.menu.CDCOnBoot.default.build.cdc_on_boot=1
+# lolin_s2_mini.menu.CDCOnBoot.dis_cdc=Disabled
+# lolin_s2_mini.menu.CDCOnBoot.dis_cdc.build.cdc_on_boot=0
+
+lolin_s2_mini.menu.MSCOnBoot.default=Disabled
+lolin_s2_mini.menu.MSCOnBoot.default.build.msc_on_boot=0
+# lolin_s2_mini.menu.MSCOnBoot.msc=Enabled
+# lolin_s2_mini.menu.MSCOnBoot.msc.build.msc_on_boot=1
+
+lolin_s2_mini.menu.DFUOnBoot.default=Disabled
+lolin_s2_mini.menu.DFUOnBoot.default.build.dfu_on_boot=0
+# lolin_s2_mini.menu.DFUOnBoot.dfu=Enabled
+# lolin_s2_mini.menu.DFUOnBoot.dfu.build.dfu_on_boot=1
+
+lolin_s2_mini.menu.PartitionScheme.default=BMC APP (3MB No OTA/1MB SPIFFS)
+lolin_s2_mini.menu.PartitionScheme.default.build.partitions=huge_app
+lolin_s2_mini.menu.PartitionScheme.default.upload.maximum_size=3145728
+
+
+lolin_s2_mini.menu.DebugLevel.none=None
+lolin_s2_mini.menu.DebugLevel.none.build.code_debug=0
+lolin_s2_mini.menu.DebugLevel.error=Error
+lolin_s2_mini.menu.DebugLevel.error.build.code_debug=1
+lolin_s2_mini.menu.DebugLevel.warn=Warn
+lolin_s2_mini.menu.DebugLevel.warn.build.code_debug=2
+lolin_s2_mini.menu.DebugLevel.info=Info
+lolin_s2_mini.menu.DebugLevel.info.build.code_debug=3
+lolin_s2_mini.menu.DebugLevel.debug=Debug
+lolin_s2_mini.menu.DebugLevel.debug.build.code_debug=4
+lolin_s2_mini.menu.DebugLevel.verbose=Verbose
+lolin_s2_mini.menu.DebugLevel.verbose.build.code_debug=5
+
+lolin_s2_mini.menu.EraseFlash.none=Disabled
+lolin_s2_mini.menu.EraseFlash.none.upload.erase_cmd=
+lolin_s2_mini.menu.EraseFlash.all=Enabled
+lolin_s2_mini.menu.EraseFlash.all.upload.erase_cmd=-e
+
+##############################################################
+
+waveshare_esp32_s3_zero.name=Waveshare ESP32-S3-Zero (BMC Beta)
+waveshare_esp32_s3_zero.vid.0=0x303a
+waveshare_esp32_s3_zero.pid.0=0x822B
+waveshare_esp32_s3_zero.upload_port.0.vid=0x303a
+waveshare_esp32_s3_zero.upload_port.0.pid=0x822B
+
+waveshare_esp32_s3_zero.bootloader.tool=esptool_py
+waveshare_esp32_s3_zero.bootloader.tool.default=esptool_py
+
+waveshare_esp32_s3_zero.upload.tool=esptool_py
+waveshare_esp32_s3_zero.upload.tool.default=esptool_py
+waveshare_esp32_s3_zero.upload.tool.network=esp_ota
+
+waveshare_esp32_s3_zero.upload.maximum_size=1310720
+
+waveshare_esp32_s3_zero.upload.maximum_data_size=327680
+waveshare_esp32_s3_zero.upload.flags=
+waveshare_esp32_s3_zero.upload.extra_flags=
+waveshare_esp32_s3_zero.upload.use_1200bps_touch=true
+waveshare_esp32_s3_zero.upload.wait_for_upload_port=true
+
+waveshare_esp32_s3_zero.serial.disableDTR=false
+waveshare_esp32_s3_zero.serial.disableRTS=false
+
+waveshare_esp32_s3_zero.build.tarch=xtensa
+waveshare_esp32_s3_zero.build.bootloader_addr=0x0
+waveshare_esp32_s3_zero.build.target=esp32s3
+waveshare_esp32_s3_zero.build.mcu=esp32s3
+waveshare_esp32_s3_zero.build.core=esp32
+waveshare_esp32_s3_zero.build.variant=waveshare_esp32_s3_zero
+waveshare_esp32_s3_zero.build.board=WAVESHARE_ESP32_S3_ZERO
+
+waveshare_esp32_s3_zero.build.usb_mode=1
+waveshare_esp32_s3_zero.build.cdc_on_boot=0
+waveshare_esp32_s3_zero.build.msc_on_boot=0
+waveshare_esp32_s3_zero.build.dfu_on_boot=0
+waveshare_esp32_s3_zero.build.f_cpu=240000000L
+waveshare_esp32_s3_zero.build.flash_size=4MB
+waveshare_esp32_s3_zero.build.flash_freq=80m
+waveshare_esp32_s3_zero.build.flash_mode=dio
+waveshare_esp32_s3_zero.build.boot=qio
+waveshare_esp32_s3_zero.build.boot_freq=80m
+waveshare_esp32_s3_zero.build.partitions=default
+waveshare_esp32_s3_zero.build.defines=
+# waveshare_esp32_s3_zero.build.extra_flags=-DESP32 -include "{build.source.path}/config.h"
+waveshare_esp32_s3_zero.build.loop_core=
+waveshare_esp32_s3_zero.build.event_core=
+waveshare_esp32_s3_zero.build.psram_type=qspi
+waveshare_esp32_s3_zero.build.memory_type={build.boot}_{build.psram_type}
+
+waveshare_esp32_s3_zero.menu.PSRAM.disabled=Disabled
+waveshare_esp32_s3_zero.menu.PSRAM.disabled.build.defines=
+waveshare_esp32_s3_zero.menu.PSRAM.disabled.build.psram_type=qspi
+waveshare_esp32_s3_zero.menu.PSRAM.enabled=Enabled
+waveshare_esp32_s3_zero.menu.PSRAM.enabled.build.defines=-DBOARD_HAS_PSRAM
+waveshare_esp32_s3_zero.menu.PSRAM.enabled.build.psram_type=qspi
+
+waveshare_esp32_s3_zero.menu.FlashMode.qio=QIO 80MHz
+waveshare_esp32_s3_zero.menu.FlashMode.qio.build.flash_mode=dio
+waveshare_esp32_s3_zero.menu.FlashMode.qio.build.boot=qio
+waveshare_esp32_s3_zero.menu.FlashMode.qio.build.boot_freq=80m
+waveshare_esp32_s3_zero.menu.FlashMode.qio.build.flash_freq=80m
+waveshare_esp32_s3_zero.menu.FlashMode.qio120=QIO 120MHz
+waveshare_esp32_s3_zero.menu.FlashMode.qio120.build.flash_mode=dio
+waveshare_esp32_s3_zero.menu.FlashMode.qio120.build.boot=qio
+waveshare_esp32_s3_zero.menu.FlashMode.qio120.build.boot_freq=120m
+waveshare_esp32_s3_zero.menu.FlashMode.qio120.build.flash_freq=80m
+
+waveshare_esp32_s3_zero.menu.LoopCore.1=Core 1
+waveshare_esp32_s3_zero.menu.LoopCore.1.build.loop_core=-DARDUINO_RUNNING_CORE=1
+waveshare_esp32_s3_zero.menu.LoopCore.0=Core 0
+waveshare_esp32_s3_zero.menu.LoopCore.0.build.loop_core=-DARDUINO_RUNNING_CORE=0
+
+waveshare_esp32_s3_zero.menu.EventsCore.1=Core 1
+waveshare_esp32_s3_zero.menu.EventsCore.1.build.event_core=-DARDUINO_EVENT_RUNNING_CORE=1
+waveshare_esp32_s3_zero.menu.EventsCore.0=Core 0
+waveshare_esp32_s3_zero.menu.EventsCore.0.build.event_core=-DARDUINO_EVENT_RUNNING_CORE=0
+
+# waveshare_esp32_s3_zero.menu.USBMode.hwcdc=Hardware CDC and JTAG
+# waveshare_esp32_s3_zero.menu.USBMode.hwcdc.build.usb_mode=1
+waveshare_esp32_s3_zero.menu.USBMode.default=USB-OTG (TinyUSB)
+waveshare_esp32_s3_zero.menu.USBMode.default.build.usb_mode=0
+
+# waveshare_esp32_s3_zero.menu.CDCOnBoot.default=Disabled
+# waveshare_esp32_s3_zero.menu.CDCOnBoot.default.build.cdc_on_boot=0
+waveshare_esp32_s3_zero.menu.CDCOnBoot.cdc=Enabled
+waveshare_esp32_s3_zero.menu.CDCOnBoot.cdc.build.cdc_on_boot=1
+
+waveshare_esp32_s3_zero.menu.MSCOnBoot.default=Disabled
+waveshare_esp32_s3_zero.menu.MSCOnBoot.default.build.msc_on_boot=0
+# waveshare_esp32_s3_zero.menu.MSCOnBoot.msc=Enabled (Requires USB-OTG Mode)
+# waveshare_esp32_s3_zero.menu.MSCOnBoot.msc.build.msc_on_boot=1
+
+waveshare_esp32_s3_zero.menu.DFUOnBoot.default=Disabled
+waveshare_esp32_s3_zero.menu.DFUOnBoot.default.build.dfu_on_boot=0
+# waveshare_esp32_s3_zero.menu.DFUOnBoot.dfu=Enabled (Requires USB-OTG Mode)
+# waveshare_esp32_s3_zero.menu.DFUOnBoot.dfu.build.dfu_on_boot=1
+
+# waveshare_esp32_s3_zero.menu.UploadMode.default=UART0 / Hardware CDC
+# waveshare_esp32_s3_zero.menu.UploadMode.default.upload.use_1200bps_touch=false
+# waveshare_esp32_s3_zero.menu.UploadMode.default.upload.wait_for_upload_port=false
+waveshare_esp32_s3_zero.menu.UploadMode.cdc=USB-OTG CDC (TinyUSB)
+waveshare_esp32_s3_zero.menu.UploadMode.cdc.upload.use_1200bps_touch=true
+waveshare_esp32_s3_zero.menu.UploadMode.cdc.upload.wait_for_upload_port=true
+
+waveshare_esp32_s3_zero.menu.PartitionScheme.default=BMC APP (3MB No OTA/1MB SPIFFS)
+waveshare_esp32_s3_zero.menu.PartitionScheme.default.build.partitions=huge_app
+waveshare_esp32_s3_zero.menu.PartitionScheme.default.upload.maximum_size=3145728
+
+waveshare_esp32_s3_zero.menu.CPUFreq.240=240MHz (WiFi)
+waveshare_esp32_s3_zero.menu.CPUFreq.240.build.f_cpu=240000000L
+waveshare_esp32_s3_zero.menu.CPUFreq.160=160MHz (WiFi)
+waveshare_esp32_s3_zero.menu.CPUFreq.160.build.f_cpu=160000000L
+waveshare_esp32_s3_zero.menu.CPUFreq.80=80MHz (WiFi)
+waveshare_esp32_s3_zero.menu.CPUFreq.80.build.f_cpu=80000000L
+waveshare_esp32_s3_zero.menu.CPUFreq.40=40MHz
+waveshare_esp32_s3_zero.menu.CPUFreq.40.build.f_cpu=40000000L
+waveshare_esp32_s3_zero.menu.CPUFreq.20=20MHz
+waveshare_esp32_s3_zero.menu.CPUFreq.20.build.f_cpu=20000000L
+waveshare_esp32_s3_zero.menu.CPUFreq.10=10MHz
+waveshare_esp32_s3_zero.menu.CPUFreq.10.build.f_cpu=10000000L
+
+waveshare_esp32_s3_zero.menu.UploadSpeed.921600=921600
+waveshare_esp32_s3_zero.menu.UploadSpeed.921600.upload.speed=921600
+waveshare_esp32_s3_zero.menu.UploadSpeed.115200=115200
+waveshare_esp32_s3_zero.menu.UploadSpeed.115200.upload.speed=115200
+waveshare_esp32_s3_zero.menu.UploadSpeed.256000.windows=256000
+waveshare_esp32_s3_zero.menu.UploadSpeed.256000.upload.speed=256000
+waveshare_esp32_s3_zero.menu.UploadSpeed.230400.windows.upload.speed=256000
+waveshare_esp32_s3_zero.menu.UploadSpeed.230400=230400
+waveshare_esp32_s3_zero.menu.UploadSpeed.230400.upload.speed=230400
+waveshare_esp32_s3_zero.menu.UploadSpeed.460800.linux=460800
+waveshare_esp32_s3_zero.menu.UploadSpeed.460800.macosx=460800
+waveshare_esp32_s3_zero.menu.UploadSpeed.460800.upload.speed=460800
+waveshare_esp32_s3_zero.menu.UploadSpeed.512000.windows=512000
+waveshare_esp32_s3_zero.menu.UploadSpeed.512000.upload.speed=512000
+
+waveshare_esp32_s3_zero.menu.DebugLevel.none=None
+waveshare_esp32_s3_zero.menu.DebugLevel.none.build.code_debug=0
+waveshare_esp32_s3_zero.menu.DebugLevel.error=Error
+waveshare_esp32_s3_zero.menu.DebugLevel.error.build.code_debug=1
+waveshare_esp32_s3_zero.menu.DebugLevel.warn=Warn
+waveshare_esp32_s3_zero.menu.DebugLevel.warn.build.code_debug=2
+waveshare_esp32_s3_zero.menu.DebugLevel.info=Info
+waveshare_esp32_s3_zero.menu.DebugLevel.info.build.code_debug=3
+waveshare_esp32_s3_zero.menu.DebugLevel.debug=Debug
+waveshare_esp32_s3_zero.menu.DebugLevel.debug.build.code_debug=4
+waveshare_esp32_s3_zero.menu.DebugLevel.verbose=Verbose
+waveshare_esp32_s3_zero.menu.DebugLevel.verbose.build.code_debug=5
+
+waveshare_esp32_s3_zero.menu.EraseFlash.none=Disabled
+waveshare_esp32_s3_zero.menu.EraseFlash.none.upload.erase_cmd=
+waveshare_esp32_s3_zero.menu.EraseFlash.all=Enabled
+waveshare_esp32_s3_zero.menu.EraseFlash.all.upload.erase_cmd=-e
+
+######################################################
